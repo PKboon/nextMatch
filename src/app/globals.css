@@ -4,6 +4,6 @@
 
 @layer components {
   .content-height {
-    height: calc(100vh - 60.5px);
+    height: calc(100vh - 76px);
   }
 }

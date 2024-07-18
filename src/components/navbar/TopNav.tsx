@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { LocalFireDepartmentRounded } from "@mui/icons-material";
-import { AppBar, Box, Button, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
 import NavLink from "./NavLink";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ export default function TopNav() {
       position="static"
       className="bg-gradient-to-r from-rose-200 to-blue-100"
     >
-      <div className="flex justify-between items-center px-14 py-3">
+      <Container className="flex justify-between items-center">
         <Toolbar className="flex items-center" disableGutters>
           <LocalFireDepartmentRounded className="text-rose-600 text-4xl" />
           <h1 className="text-black text-3xl font-bold mr-0.5">Next</h1>
@@ -38,7 +38,7 @@ export default function TopNav() {
             Register
           </Button>
         </Box>
-      </div>
+      </Container>
     </AppBar>
   );
 }
