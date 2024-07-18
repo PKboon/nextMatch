@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "@/theme";
+import TopNav from "@/components/navbar/TopNav";
 
 export const metadata: Metadata = {
   title: "Next Match",
@@ -18,7 +19,8 @@ export default function RootLayout({
       <body>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {children}
+          <TopNav />
+          <main className="container p-10">{children}</main>
         </ThemeProvider>
       </body>
     </html>
