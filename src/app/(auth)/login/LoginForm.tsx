@@ -1,3 +1,4 @@
+"use client";
 import {
   Button,
   Card,
@@ -8,8 +9,24 @@ import {
 } from "@mui/material";
 import { Lock } from "@mui/icons-material";
 import React from "react";
+import { useForm } from "react-hook-form";
+import { LoginSchema, loginSchema } from "@/lib/schemas/loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+    mode: "onTouched",
+  });
+
+  const onLoginSubmit = (data: LoginSchema) => {
+    console.log(data);
+  };
+
   return (
     <Card className="w-2/5 mx-auto h-min rounded-xl">
       <CardContent>
@@ -26,20 +43,37 @@ export default function LoginForm() {
           Welcome back to NextMatch
         </Typography>
 
-        <form className="mt-3 grid gap-3">
+        <form
+          className="mt-3 grid gap-3"
+          onSubmit={handleSubmit(onLoginSubmit)}
+        >
           <TextField
-            variant="outlined"
-            color="error"
-            label="Email"
             type="email"
+            color="error"
+            variant="outlined"
+            label="Email"
+            defaultValue=""
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
           />
           <TextField
-            variant="outlined"
-            color="error"
-            label="Password"
             type="password"
+            color="error"
+            variant="outlined"
+            label="Password"
+            defaultValue=""
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
           />
-          <Button type="submit" variant="contained" color="error" size="large">
+          <Button
+            type="submit"
+            color="error"
+            variant="contained"
+            size="large"
+            disabled={!isValid}
+          >
             Log in
           </Button>
         </form>
