@@ -16,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-slate-50">
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <TopNav />
-          <main className="container p-10">{children}</main>
+          <main className="container mx-auto">{children}</main>
         </ThemeProvider>
       </body>
     </html>
