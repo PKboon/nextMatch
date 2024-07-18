@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-slate-50">
+      <body id="__next" className="bg-slate-50">
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <TopNav />

@@ -12,7 +12,7 @@ export default function NavLink({ page }: Props) {
   return (
     <Link
       href={`/${page.link}`}
-      className={`uppercase text-xl text-black ${
+      className={`uppercase text-xl text-black no-underline ${
         currPath === "/" + page.link ? "font-bold text-rose-700" : ""
       }`}
     >

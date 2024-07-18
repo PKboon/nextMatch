@@ -17,12 +17,8 @@ export default function LoginForm() {
           direction="row"
           className="items-center mb-1 gap-1 justify-center"
         >
-          <Lock className="text-rose-600" sx={{ fontSize: "1.25rem" }} />
-          <Typography
-            variant="h5"
-            className="text-rose-600"
-            sx={{ fontWeight: "bold" }}
-          >
+          <Lock className="text-rose-600 text-xl" />
+          <Typography variant="h5" className="text-rose-600 font-bold">
             Login
           </Typography>
         </Stack>
