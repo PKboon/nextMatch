@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function MatchesPage() {
-  return <div>MatchesPage</div>;
+    return <div>MatchesPage</div>;
 }

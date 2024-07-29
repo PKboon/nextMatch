@@ -6,25 +6,25 @@ import theme from "@/theme";
 import TopNav from "@/components/navbar/TopNav";
 
 export const metadata: Metadata = {
-  title: "Next Match",
+    title: "Next Match",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body id="__next">
-        <div className="bg-slate-50 h-screen">
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <TopNav />
-            <main className="container mx-auto">{children}</main>
-          </ThemeProvider>
-        </div>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body id="__next">
+                <div className="bg-slate-50 h-screen">
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <TopNav />
+                        <main className="container mx-auto">{children}</main>
+                    </ThemeProvider>
+                </div>
+            </body>
+        </html>
+    );
 }
