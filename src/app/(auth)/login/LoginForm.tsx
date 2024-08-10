@@ -21,6 +21,7 @@ export default function LoginForm() {
 
     const {
         register,
+        setError,
         handleSubmit,
         formState: { errors, isValid, isSubmitting },
     } = useForm<LoginSchema>({
@@ -33,7 +34,7 @@ export default function LoginForm() {
         if (result.status === "success") {
             router.push("/members");
         } else {
-            console.log(result.error);
+            setError("root.serverError", { message: result.error as string });
         }
     };
 
@@ -80,6 +81,11 @@ export default function LoginForm() {
                         error={!!errors.password}
                         helperText={errors.password?.message}
                     />
+                    {errors.root?.serverError && (
+                        <p className="text-red-500 text-sm">
+                            {errors.root.serverError.message}
+                        </p>
+                    )}
                     <Button
                         startIcon={
                             isSubmitting && (
