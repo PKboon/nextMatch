@@ -13,7 +13,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { LoginSchema, loginSchema } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signInUser } from "../actions/authActions";
+import { signInUser } from "../../actions/authActions";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
