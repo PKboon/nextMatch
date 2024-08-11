@@ -18,22 +18,23 @@ import { registerUser } from "@/app/actions/authActions";
 export default function RegisterForm() {
     const {
         register,
-        handleSubmit,
         setError,
+        handleSubmit,
         formState: { errors, isValid, isSubmitting },
     } = useForm<RegisterSchema>({
-        // resolver: zodResolver(registerSchema),
+        resolver: zodResolver(registerSchema),
         mode: "onTouched",
     });
 
     const onRegisterSubmit = async (data: RegisterSchema) => {
         const result = await registerUser(data);
+
         if (result.status === "success") {
-            console.log("User registered successfully");
+            console.log("User registered succesfully");
         } else {
             if (Array.isArray(result.error)) {
                 result.error.forEach((e) => {
-                    const fieldName = e.path.join(".") as
+                    const fieldName = e.path.join(". ") as
                         | "email"
                         | "name"
                         | "password";
@@ -63,7 +64,6 @@ export default function RegisterForm() {
                 <Typography className="text-slate-400 text-center">
                     Welcome to NextMatch
                 </Typography>
-
                 <form
                     className="mt-3 grid gap-3"
                     onSubmit={handleSubmit(onRegisterSubmit)}
@@ -99,7 +99,7 @@ export default function RegisterForm() {
                         helperText={errors.password?.message}
                     />
                     {errors.root?.serverError && (
-                        <p className="text-red-500 text-sm text-center m-0">
+                        <p className="text-red-500 text-sm">
                             {errors.root.serverError.message}
                         </p>
                     )}
@@ -108,7 +108,10 @@ export default function RegisterForm() {
                             isSubmitting && (
                                 <CircularProgress
                                     className="text-white opacity-75"
-                                    style={{ width: "1rem", height: "1rem" }}
+                                    style={{
+                                        width: "1.25rem",
+                                        height: "1.25rem",
+                                    }}
                                 />
                             )
                         }

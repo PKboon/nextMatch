@@ -3,6 +3,7 @@ import {
     Button,
     Card,
     CardContent,
+    CircularProgress,
     Stack,
     TextField,
     Typography,
@@ -12,19 +13,29 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { LoginSchema, loginSchema } from "@/lib/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signInUser } from "../actions/authActions";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+    const router = useRouter();
+
     const {
         register,
+        setError,
         handleSubmit,
-        formState: { errors, isValid },
+        formState: { errors, isValid, isSubmitting },
     } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
         mode: "onTouched",
     });
 
-    const onLoginSubmit = (data: LoginSchema) => {
-        console.log(data);
+    const onLoginSubmit = async (data: LoginSchema) => {
+        const result = await signInUser(data);
+        if (result.status === "success") {
+            router.push("/members");
+        } else {
+            setError("root.serverError", { message: result.error as string });
+        }
     };
 
     return (
@@ -45,7 +56,6 @@ export default function LoginForm() {
                 <Typography className="text-slate-400 text-center">
                     Welcome back to NextMatch
                 </Typography>
-
                 <form
                     className="mt-3 grid gap-3"
                     onSubmit={handleSubmit(onLoginSubmit)}
@@ -70,7 +80,23 @@ export default function LoginForm() {
                         error={!!errors.password}
                         helperText={errors.password?.message}
                     />
+                    {errors.root?.serverError && (
+                        <p className="text-red-500 text-sm">
+                            {errors.root.serverError.message}
+                        </p>
+                    )}
                     <Button
+                        startIcon={
+                            isSubmitting && (
+                                <CircularProgress
+                                    className="text-white opacity-75"
+                                    style={{
+                                        width: "1.25rem",
+                                        height: "1.25rem",
+                                    }}
+                                />
+                            )
+                        }
                         type="submit"
                         color="error"
                         variant="contained"

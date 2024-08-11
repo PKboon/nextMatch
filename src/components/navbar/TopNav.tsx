@@ -18,13 +18,13 @@ export default function TopNav() {
             className="bg-gradient-to-r from-rose-200 to-blue-100"
         >
             <Container className="flex justify-between items-center">
-                <Toolbar className="flex items-center" disableGutters>
+                <Link href="/" className="flex items-center">
                     <LocalFireDepartmentRounded className="text-rose-600 text-4xl" />
                     <h1 className="text-black text-3xl font-bold mr-0.5">
                         Next
                     </h1>
                     <h1 className="text-rose-600 text-3xl font-bold">Match</h1>
-                </Toolbar>
+                </Link>
 
                 <Box className="flex gap-6">
                     {pages.map((page) => (
