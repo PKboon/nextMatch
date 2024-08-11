@@ -1,9 +1,10 @@
-"use client";
 import React from "react";
 import { LocalFireDepartmentRounded } from "@mui/icons-material";
 import { AppBar, Box, Button, Container, Toolbar } from "@mui/material";
-import NavLink from "./NavLink";
 import Link from "next/link";
+import UserMenu from "./UserMenu";
+import NavLink from "./NavLink";
+import { auth } from "@/auth";
 
 const pages = [
     { name: "matches", link: "members" },
@@ -11,7 +12,9 @@ const pages = [
     { name: "messages", link: "messages" },
 ];
 
-export default function TopNav() {
+export default async function TopNav() {
+    const session = await auth();
+
     return (
         <AppBar
             position="static"
@@ -32,14 +35,22 @@ export default function TopNav() {
                     ))}
                 </Box>
 
-                <Box className="flex gap-4">
-                    <Button href="/login" variant="outlined" color="error">
-                        Login
-                    </Button>
-                    <Button href="/register" variant="contained" color="error">
-                        Register
-                    </Button>
-                </Box>
+                {session?.user ? (
+                    <UserMenu user={session.user} />
+                ) : (
+                    <Box className="flex gap-4">
+                        <Button href="/login" variant="outlined" color="error">
+                            Login
+                        </Button>
+                        <Button
+                            href="/register"
+                            variant="contained"
+                            color="error"
+                        >
+                            Register
+                        </Button>
+                    </Box>
+                )}
             </Container>
         </AppBar>
     );
