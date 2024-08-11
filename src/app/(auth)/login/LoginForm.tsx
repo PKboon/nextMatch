@@ -56,7 +56,6 @@ export default function LoginForm() {
                 <Typography className="text-slate-400 text-center">
                     Welcome back to NextMatch
                 </Typography>
-
                 <form
                     className="mt-3 grid gap-3"
                     onSubmit={handleSubmit(onLoginSubmit)}

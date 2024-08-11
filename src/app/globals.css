@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .content-height {
-    height: calc(100vh - 76px);
-  }
+    .content-height {
+        height: calc(100vh - 76px);
+    }
 }

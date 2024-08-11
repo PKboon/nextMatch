@@ -13,7 +13,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { RegisterSchema, registerSchema } from "@/lib/schemas/registerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerUser } from "../actions/authActions";
+import { registerUser } from "@/app/actions/authActions";
 
 export default function RegisterForm() {
     const {
@@ -64,7 +64,6 @@ export default function RegisterForm() {
                 <Typography className="text-slate-400 text-center">
                     Welcome to NextMatch
                 </Typography>
-
                 <form
                     className="mt-3 grid gap-3"
                     onSubmit={handleSubmit(onRegisterSubmit)}
